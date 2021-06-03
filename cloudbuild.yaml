@@ -1,0 +1,19 @@
+# This file and other cloudbuild.yaml files are used to ensure that
+# our public Docker images such as gcr.io/krm-test-7/hello-app:1.0
+# are rebuilt and updated upon changes to the repository.
+
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args:
+    - 'build'
+    - '-t'
+    - 'gcr.io/krm-test-7/hello-app:1.0'
+    - '-t'
+    - 'us-central1-docker.pkg.dev/krm-test-7/containers/gke/hello-app:1.0'
+    - '.'
+
+images:
+  - 'gcr.io/krm-test-7/hello-app:1.0'
+  - 'us-central1-docker.pkg.dev/krm-test-7/containers/gke/hello-app:1.0'
+
+
